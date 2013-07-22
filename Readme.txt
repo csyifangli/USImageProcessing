@@ -135,11 +135,51 @@ i) 20130624 ANALYSIS OF APPROACH 3 + RADIUS
 		Output:	maximum:		5xn array with the position of the features for each finger.
 		
 		
-h) 20130618 ANALYSIS OF APPROACH 3 + RADIUS
-	h.1) FingerVariation.m. Function: Load an Excel sheet and plots different graphs showing the variation in the error for number of features and the method of selecting the features. Valid for the last set of experiments (zeros-nonzeros) and separated fingers.
+j) 20130625 ANALYSIS OF APPROACH 3 + RADIUS
+	j.1) FingerVariation.m. Function: Load an Excel sheet and plots different graphs showing the variation in the error for number of features and the method of selecting the features. Valid for the last set of experiments (zeros-nonzeros) and separated fingers.
+		Input:	xlsfile:	Excel file with the information of the NMSE computed with MATLAB
+	
+	j.2) suptitle.m. Function. From MATLAB Central File Exchange. Place a big title in the figure
+	
+	j.3) ActivationOO{XX}{YY}.fig. Figures with the different experiments.
+		{XX}: Testing dataset where the analysis is being performed. {Activation, NonActivation}
+		{YY}: Figure Ploted. GR1 stands for each finger and radius separately. GR2 for the mean of each finger at different radius, and GR3 shows the comparison between selected and uniform features together. {GR1, GR2, GR3}
+		
+	
+k) 20130703 ANALYSIS OF APPROACH 3 + RADIUS
+	k.1) FingerVariation.m. Function: Load an Excel sheet and plots different graphs showing the variation in the error for number of features and the method of selecting the features. Valid for the last set of experiments (zeros-nonzeros) and separated fingers. Loads all the experiments (stimulus, force in newtons, force in percentage...)
 		Input:	xlsfile:	Excel file with the information of the NMSE computed with MATLAB
 
+
+	k.2) suptitle.m. Function. From MATLAB Central File Exchange. Place a big title in the figure
 	
+	k.3) force. Folder with the figures result of the experiments in force. {XX}{YY}.fig
+		{XX}: Testing dataset where the analysis is being performed. {activation, nonactivation, complete}.
+		{YY}: Type of force analysis. {perc, newtons}.
+		
+		
+	k.4) stimulus. Folder with the figures result of the experiments in stimulus. {XX}{YY}.fig
+		{XX}: Type of figure. 5graphs stands for the mean of each finger at different radius. together shows the comparison between selected and uniform features together. {5graphs, together}
+		{YY}: Training and Testing dataset where the analysis is being performed. {1, 2, 3, 4, 5, 6}
+			1. Training complete, testing activation
+			2. Training complete, testing non activation
+			3. Training complete, testing complete
+			4. Training activation, testing activation
+			5. Training activation, testing non activation
+			6. Training activation, testing complete
+	
+	
+	k.5) predictions. Folder with the plot of the predictions in one dataset (claudio) {xx}{AAA}{y}-{BB}.fig
+		{xx}: Testing dataset where the analysis is being performed. Complete, non zeros (activation) and zeros (non activation) {c, nz, z}
+		{AAA}: Number of features employed. {003, 015, 027, 039, 075, 543}
+		{y}: Type of analysis employed (Selected or uniform features). In case of the whole set of features, this cannot be applied {s, u, '').
+		{BB}: Radius of the grid when extracting the featuers. {10, 50}
+	
+l) 20130719 ANALYSIS OF STATISTICS IN THE RESULTS
+	l.1) scriptcomputettest2.m. Script which computes the ttest2 in a subject for each finger.
+
+
+
 
 
 	
@@ -156,7 +196,16 @@ d) 0606-Analysis of different lambdas.xls. NMSE comparison of a dataset for diff
 e) 0611-Analysis different radius selection-noselection. NMSE comparison of a different selected and uniform number of features, used in h.1)
 f) 0619-Analysis different radius selection-noselection sepTraining.xls. NMSE comparison of a different selected and uniform number of features, separating each fingers. Analysis of the non-zero region.
 g) 0620-Analysis different radius selection-noselection sepTraining zeros.xls. NMSE comparison of a different selected and uniform number of features, separating each fingers. Analysis of the zero region.
-
+h) 0704-Complete.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the complete region. Stimulus signal
+i) 0704-Nonzeros.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the activation region. Stimulus signal
+j) 0704-Zeros.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the non activation region. Stimulus signal
+k) 0712-Complete.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the complete region. Force signal in percentages
+l) 0712-CompleteF.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the complete region. Force signal in newtons
+m) 0712-Nonzeros.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the activation region. Force signal in percentages
+n) 0712-NonzerosF.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the activation region. Force signal in newtons
+o) 0712-Zeros.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the non activation region. Force signal in percentages
+p) 0712-ZerosF.xls. NMSE comparision of different selected and uniform number of features, separating each fingers. Testing in the non activation region. Force signal in newtons
+q) 0715-Globalstudy.xls. NMSE comparision in 10 datasets, selecting a radius and number of features (50.39) between selected and uniform features. Training in complete region, testing in activation, non activation, complete region. Stimulus signal. Ttest2 analysis comptued for all subjects comparing uniform and selected predictions.
 
 
 
@@ -183,8 +232,8 @@ j) 5-Thumb.fig: MATLAB figure of the thumb in the 8 experiments
 
 
 
-C:\datasets\{nameDataset}\			INFO OF TXT FILES WITH THE EXPERIMENT RESULTS (AND ANY OTHER POSSIBLE MAT FILE) IS SKIPPED, BECAUSE THEY ARE LOADED BEFORE THE OPERATION
-	{nameDataset} = {caophan2, claudio, max2, rashida}
+E:\data\{nameDataset}\			INFO OF TXT FILES WITH THE EXPERIMENT RESULTS (AND ANY OTHER POSSIBLE MAT FILE) IS SKIPPED, BECAUSE THEY ARE LOADED BEFORE THE OPERATION
+	{nameDataset} = {caophan2, claudio, max2, rashida}. In the last analysis 6 datasets were included. {albert, christian, david, philipp, sebastian, wolfgang}
 	
 a) 1\: Folder. Contains the first experiment on that subject
 	a.1) features\: Folder. Contains the features obtained with HALCON. The format is GridXXXCircleYY.txt, where XXX is the number of features and YY is the radius of the circle.
@@ -207,27 +256,45 @@ b) 2\: Folder. Contains the second experiment on that subject
 	b.4) maximums\: Folder. Contain the maximums computed with the highest correlation for each finger. Folders are named either YY, with YY the radius of the circle, or YYsingle, with YY the radius of the circle and excluding features in one finger to the other analysis.
 
 c) claudio.mat: MAT-file. Contains all the info loaded and saved of both experiments.
-
 d) savedatamat.m: Script. Load all the info of the subject and stores on claudio.mat.
-
 e) test.m: Function. Performs the original NMSE calculation.
-
 f) testV12.m: Function. Load the 543 features features for different radii, and computes the NMSE for every finger. Non-zero analysis
-
 g) testV13.m: Function. Load the 543 features features for different radii, and computes the NMSE for every finger. Zero analysis
-
 h) testV2.m: Function. Computes the NMSE for the individually selected maximums in the global dataset.
-
 i) testV3.m: Function. Computes the NMSE for different values of normalization (parameter "lambda") in the global dataset.
-
 j) testV4.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features in the global dataset.
-
 k) testV42.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Non-zero analysis.
-
 l) testV43.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Zero analysis.
-
-m) testV5.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Global dataset
-
-n) testV52.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Zero analysis
-
-o) testV53.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Non-zero analysis
+m) testV44complete.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in complete dataset. Testing in complete section. Stimulus signal
+n) testV44nonzeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in complete dataset. Testing in activation section. Stimulus signal
+o) testV44zeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in complete dataset. Testing in non activation section. Stimulus signal
+p) testV45complete.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in activation. Testing in complete section. Stimulus signal
+q) testV45nonzeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in activation. Testing in activation section. Stimulus signal
+r) testV45zeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in activation. Testing in non activation section. Stimulus signal
+s) testV46complete.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in complete dataset. Testing in complete section. Force signal
+t) testV46nonzeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in complete dataset. Testing in activation section. Force signal
+u) testV46zeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Training in complete dataset. Testing in non activation section. Force signal
+v) testV47complete.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in complete section. Stimulus signal
+w) testV47nonzeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Final radius and number of features. Testing in activation section. Testing in activation section. Stimulus signal
+x) testV47zeros.m: Function. Computes the NMSE for different maximums (selected features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in non activation section. Stimulus signal
+y) testV5.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Global dataset
+z) testV52.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Zero analysis
+aa) testV53.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Non-zero analysis
+ab) testV54complete.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in complete dataset. Testing in complete section. Stimulus signal
+ac) testV54nonzeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in complete dataset. Testing in activation section. Stimulus signal
+ad) testV54zeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in complete dataset. Testing in non activation section. Stimulus signal
+ae) testV55complete.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in activation. Testing in complete section. Stimulus signal
+af) testV55nonzeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in activation. Testing in activation section. Stimulus signal
+ag) testV55zeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in activation. Testing in non activation section. Stimulus signal
+ah) testV56complete.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in complete dataset. Testing in complete section. Force signal
+ai) testV56nonzeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in complete dataset. Testing in activation section. Force signal
+aj) testV56zeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Training in complete dataset. Testing in non activation section. Force signal
+ak) testV57complete.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in complete section. Stimulus signal
+al) testV57nonzeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Final radius and number of features. Testing in activation section. Testing in activation section. Stimulus signal
+am) testV57zeros.m: Function. Computes the NMSE for uniform points (uniform features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in non activation section. Stimulus signal
+an) testV7selectedComplete.m: Function. Computes the error during the complete dataset (without averaging) for perform a ttest2 for different maximums (selected features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in complete section. Stimulus signal.
+ao) testV7selectedNonzeros.m: Function. Computes the error during the complete dataset (without averaging) for perform a ttest2 for different maximums (selected features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in activation section. Stimulus signal.
+ap) testV7selectedZeros.m: Function. Computes the error during the complete dataset (without averaging) for perform a ttest2 for different maximums (selected features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in non activation section. Stimulus signal.
+aq) testV7uniformComplete.m: Function. Computes the error during the complete dataset (without averaging) for perform a ttest2 for uniform points (uniform features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in complete section. Stimulus signal.
+ar) testV7uniformNonzeros.m: Function. Computes the error during the complete dataset (without averaging) for perform a ttest2 for uniform points (uniform features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in activation section. Stimulus signal.
+as) testV7uniformZeros.m: Function. Computes the error during the complete dataset (without averaging) for perform a ttest2 for uniform points (uniform features analysis) obtained at several number of features. Final radius and number of features. Training in complete dataset. Testing in non activation section. Stimulus signal.
